@@ -141,6 +141,9 @@ h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; color: var(--ink); }
   gap: 1.8rem;
   align-items: start;
 }
+.bio.bio-noportrait {
+  display: block;
+}
 .bio .portrait {
   width: 150px;
   height: 150px;
