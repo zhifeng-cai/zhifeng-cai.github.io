@@ -27,8 +27,8 @@ body {
   background: var(--rice);
   color: var(--ink);
   font-family: "Source Serif 4", "Source Serif Pro", "Noto Serif SC", Georgia, "Songti SC", serif;
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 18.5px;
+  line-height: 1.68;
 }
 
 /* Subtle rice-paper texture via gradient noise */
@@ -196,12 +196,52 @@ h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; color: var(--ink); }
 }
 .pub .links { margin-top: 0.3rem; font-size: 0.92rem; }
 .pub .links a { margin-right: 0.9rem; }
-.pub .abstract {
-  margin-top: 0.4rem;
+/* Hover abstract: inline trigger + floating popover */
+.pub .abs {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  font-style: italic;
   color: var(--ink-soft);
-  font-size: 0.96rem;
-  padding-left: 0.9rem;
-  border-left: 2px solid var(--rule);
+  border-bottom: 1px dotted rgba(58, 55, 50, 0.4);
+  margin-right: 0.9rem;
+}
+.pub .abs:hover,
+.pub .abs:focus-within {
+  color: var(--seal);
+  border-bottom-color: var(--seal);
+}
+.pub .abs .abs-pop {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.5rem);
+  z-index: 20;
+  width: min(30rem, 85vw);
+  padding: 0.85rem 1rem;
+  background: #fcfaf1;
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--seal);
+  box-shadow: 0 6px 20px -8px rgba(28, 26, 23, 0.25);
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  font-style: normal;
+  line-height: 1.55;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  pointer-events: none;
+  cursor: default;
+}
+.pub .abs:hover .abs-pop,
+.pub .abs:focus-within .abs-pop {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+@media (max-width: 640px) {
+  .pub .abs .abs-pop { width: 88vw; left: 0; }
 }
 
 /* ============ Contact / footer ============ */
